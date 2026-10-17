@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d4735">
+  <meta name="description" content="Menar-ı Tedris: İLİTAM, AÖF, Arapça ve DHBT derslerine çevrim içi erişim.">
+  <title>Menar-ı Tedris | Çevrim İçi Eğitim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/minimal.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#/" aria-label="Menar-ı Tedris ana sayfa">
+        <span class="brand-icon" aria-hidden="true"><svg width="29" height="29" viewBox="0 0 32 32" fill="none"><path d="M16 3.5 28 10.5v11L16 28.5 4 21.5v-11L16 3.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M16 11v13m0-12-7-3v11l7 4 7-4V9l-7 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m10.5 15 5.5 3 5.5-3" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span class="brand-title">Menar-ı <b>Tedris</b></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Ana menü"><a href="#/">Ana sayfa</a><a href="#/egitimler">Eğitimler</a><a href="#/canli">Canlı dersler</a></nav>
+      <div id="header-account" class="header-account"></div>
+      <button class="mobile-trigger" id="mobile-trigger" aria-label="Menüyü aç" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" hidden aria-label="Mobil menü"><a href="#/">Ana sayfa</a><a href="#/egitimler">Eğitimler</a><a href="#/canli">Canlı dersler</a><div id="mobile-account"></div></nav>
+  </header>
+  <main id="app"><div class="loading"><span class="spinner"></span> Menar-ı Tedris yükleniyor...</div></main>
+  <footer class="site-footer"><div class="container footer-inner"><div class="footer-identity"><span><b>Menar-ı Tedris</b><small>Çevrim içi eğitim</small></span></div><nav><a href="#/egitimler">Eğitimler</a><a href="#/canli">Canlı dersler</a><a href="#/panel">Öğrenci paneli</a></nav></div><div class="container foot-bottom"><span>© <span id="year"></span> Menar-ı Tedris. Tüm hakları saklıdır.</span></div></footer>
+  <div class="modal-overlay" id="modal" hidden><div class="modal-dialog" id="modal-content" role="dialog" aria-modal="true"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
