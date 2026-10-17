@@ -148,6 +148,35 @@ def init_db():
 init_db()
 
 
+def initialize_admin_from_environment():
+    """Bootstrap first admin from private hosting environment variables.
+
+    No default credentials. Does nothing if an admin already exists.
+    Note that SQLite on ephemeral hosting is not durable.
+    """
+    email = os.environ.get('INITIAL_ADMIN_EMAIL', '').strip().lower()
+    password = os.environ.get('INITIAL_ADMIN_PASSWORD', '')
+    name = os.environ.get('INITIAL_ADMIN_NAME', 'Site Yöneticisi').strip()
+    if not email and not password:
+        return
+    if '@' not in email or len(password) < 12 or len(name) < 2:
+        raise RuntimeError('INITIAL_ADMIN_EMAIL ve en az 12 karakterlik INITIAL_ADMIN_PASSWORD ayarlanmali.')
+    with db() as conn:
+        if conn.execute("SELECT 1 FROM users WHERE role='admin' LIMIT 1").fetchone():
+            return
+        existing = conn.execute('SELECT id FROM users WHERE email=?', (email,)).fetchone()
+        if existing:
+            conn.execute("UPDATE users SET role='admin', password_hash=?, name=? WHERE id=?",
+                         (hash_password(password), name, existing['id']))
+        else:
+            conn.execute("INSERT INTO users(name,email,password_hash,role,created_at) VALUES(?,?,?,'admin',?)",
+                         (name,email,hash_password(password),now_iso()))
+    print('Ilk yonetici hesabi olusturuldu.')
+
+
+initialize_admin_from_environment()
+
+
 def json_error(msg, status=400):
     return JSONResponse({'error':msg}, status_code=status)
 
